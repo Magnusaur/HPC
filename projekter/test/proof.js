@@ -13,8 +13,11 @@ function draw() {
   textSize(30);
   text('KLIK MIG', 150, 225);
 
+  press();
 
+}
 
+function press() {
   if (mouseIsPressed) {
     lokke.play();
   }
