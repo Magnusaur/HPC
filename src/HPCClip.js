@@ -51,6 +51,6 @@ class HPCClip {
     }
     
     get urlLocation(){
-        return "TheUrlToTheClipFile";
+        return "http://vlogvlog.dk/"+this.episodeNum+".mp4";
     }
 }
