@@ -27,14 +27,40 @@
             $("button").click(function() {
                 //When the button is clicked we ask the hpcApp.startHPC run
                 //It returns a HPCCatalog in a callback function
-                startHPC(function(data){
+                startHPC(function(data) {
                     // we add to the console tha the catalog is done
                     console.log("Catalog Done");
-                    
+
                     //@Magnus: Here you can start using the list (array) of clips
                     //for instance in a function where you layout text strings etc.
                     var clips = data.clips;
                     console.log(clips[0].urlLocation);
+                    for (var i = 0; i < clips.length; i++) {
+                        var button = document.createElement("BUTTON");
+                        button.data = clips[i];
+                        button.onclick = function() {
+                            console.log(this.playing);
+                            if(this.sound === undefined){
+                                this.sound = document.createElement("AUDIO");
+                                this.sound.button = this;
+                                this.sound.src = this.data.urlLocation;
+                                this.sound.addEventListener("ended",function(event){
+                                    console.log(event);
+                                    this.button.playing = false;
+                                })
+                            }
+                            if (this.playing) {
+                                this.playing = false;
+                                this.sound.pause();
+                                this.sound.currentTime = 0;
+                            } else {
+                                this.playing = true;
+                                this.sound.play();
+                            }
+                        }
+                        button.appendChild(document.createTextNode(clips[i].episodeTitle));
+                        document.body.appendChild(button);
+                    }
                 });
             });
         });
