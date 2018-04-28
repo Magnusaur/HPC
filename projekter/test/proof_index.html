@@ -1,13 +1,40 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <meta name="viewport" width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0>
-    <style> body {padding: 0; margin: 0;} </style>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+    </style>
     <script src="../../p5.min.js"></script>
     <script src="../../addons/p5.dom.min.js"></script>
     <script src="../../addons/p5.sound.min.js"></script>
-    <script src="proof.js"></script>
-  </head>
-  <body>
-  </body>
+    <script src="../../addons/jquery.min.js"></script>
+    <script src="../../src/HPCCatalog.js"></script>
+    <script src="../../src/HPCClip.js"></script>
+    <script src="hpcApp.js"></script>
+</head>
+
+<body>
+    <button>Get Clips</button>
+    <script>
+        //We subscribe to the document.ready event and trigger a function
+        $(document).ready(function() {
+            //when the document is ready we add a listener/function to all buttons 
+            $("button").click(function() {
+                //When the button is clicked we ask the hpcApp.startHPC run
+                //It returns a HPCCatalog in a callback function
+                startHPC(function(data){
+                    // we add to the console tha the catalog is done
+                    console.log("catalog done  "+data.clips[0].episodeTitle)
+                    //data.clips
+                });
+            });
+        });
+    </script>
+</body>
+
 </html>
