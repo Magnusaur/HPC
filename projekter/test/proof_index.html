@@ -29,11 +29,17 @@
                 //It returns a HPCCatalog in a callback function
                 startHPC(function(data){
                     // we add to the console tha the catalog is done
-                    console.log("catalog done  "+data.clips[0].episodeTitle)
-                    //data.clips
+                    console.log("Catalog Done");
+                    
+                    //@Magnus: Here you can start using the list (array) of clips
+                    //for instance in a function where you layout text strings etc.
+                    var clips = data.clips;
+                    console.log(clips);
                 });
             });
         });
+        
+        
     </script>
 </body>
 

@@ -7,7 +7,7 @@ class HPCCatalog{
     //Constructs the catalog
     constructor(data){
         //We create a new "internal" property for storing the catalog in as an array
-        this._clips = [];
+        this.clips = [];
         
         //Run over the data set in a loop
         for(var i=0; i < data.length; i++){
@@ -15,17 +15,10 @@ class HPCCatalog{
             let clip = new HPCClip(data[i])
             {
                 //Add the clip to the catalog
-                this._clips.push(clip);
+                this.clips.push(clip);
             }
         }    
         //Trace to console that the catalog has been created
-        console.log("Catalog created with "+this._clips.length);
-    }
-    
-    /**
-    * Retrieves the catalog of clips (array)
-    */
-    get clips (){
-        return this._clips;
+        //console.log("Catalog created with "+this.clips.length);
     }
 }

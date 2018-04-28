@@ -9,10 +9,9 @@ class HPCClip {
     
     constructor(data){ 
         //Info object to store the information extracted
-        var info = {};
-        
+        this.info = {};
         //We stor the episode title (as it is the first from the chart this comes on its own) 
-        info["episodetitle"] = data.title.$1;
+        this.info["episodetitle"] = data.title.$t;
         
         //All the data of the clip is received as one long Comme separated file
         //We start by splitting it out
@@ -25,24 +24,33 @@ class HPCClip {
             // - we do it with a RegExp, so we can still have time in a 12:12:12 format
             // NOTE: Regex has been deprecated for split.. :-)
             var tempPro = value[i].split(": ");
-            info[tempPro[0]] = tempPro[1]
+            this.info[tempPro[0]] = tempPro[1]
             
         }
-        console.log(info);
-        this._info = info;
+        console.log(this.info);
     }
     
     get episodeTitle(){
-        console.log("no title.... " +this._info["episodetitle"])
-        console.log(info);
-        return this._info.episodeTitle
+        return this.info["episodetitle"];
     }
     
     get episodeNum(){
-        return this._info["episodenumber"];
+        return this.info["episodenumber"];
     }
     
     get transcript(){
-        return this._info["transcript"];
+        return this.info["transcript"];
+    }
+    
+    get description(){
+        return this.info["description"];
+    }
+    
+    get clipTitle(){
+        return this.info["cliptitle"];
+    }
+    
+    get urlLocation(){
+        return "TheUrlToTheClipFile";
     }
 }
